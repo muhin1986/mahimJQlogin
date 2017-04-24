@@ -1,0 +1,223 @@
+<html>
+<head>
+    <title>Mohim57 login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+    @import url(http://fonts.googleapis.com/css?family=Raleway);
+h2 {
+  background-color: #FEFFED;
+  padding: 30px 35px;
+  margin: -10px -50px;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+
+hr {
+  margin: 10px -50px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin-bottom: 40px;
+}
+
+div.container {
+  width: 900px;
+  height: 610px;
+  margin: 35px auto;
+  font-family: 'Raleway', sans-serif;
+}
+
+div.main {
+  width: 100%;
+  padding: 10px 50px 25px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  font-family: raleway;
+  float: left;
+  margin-top: 50px;
+}
+
+input[type=text],
+input[type=password] {
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  margin-bottom: 25px;
+  margin-top: 5px;
+  border: 2px solid #ccc;
+  color: #4f4f4f;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+label {
+  color: #464646;
+  text-shadow: 0 1px 0 #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+center {
+  font-size: 32px;
+}
+
+.note {
+  color: red;
+}
+
+.valid {
+  color: green;
+}
+
+.back {
+  text-decoration: none;
+  border: 1px solid rgb(0, 143, 255);
+  background-color: rgb(0, 214, 255);
+  padding: 3px 20px;
+  border-radius: 2px;
+  color: black;
+}
+
+input[type=button] {
+  font-size: 16px;
+  background: linear-gradient(#ffbc00 5%, #ffdd7f 100%);
+  border: 1px solid #e5a900;
+  color: #4E4D4B;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 0;
+  outline: none;
+}
+
+input[type=button]:hover {
+  background: linear-gradient(#ffdd7f 5%, #ffbc00 100%);
+}
+
+.reset {
+  min-height: 45px;
+  background-color: #33cc33;
+  color: #000000;
+  border: 1px solid green;
+  border-radius: 7px;
+  width: 100%;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+red {
+  background: #fffdf8;
+  border: 1px solid red;
+  padding: 5px 10px;
+  margin: 0px 5px;
+  color: black;
+  font-size: 12px;
+}
+
+.orange {
+  background: #fff791;
+  border: 1px solid red;
+  padding: 5px 10px;
+  margin: 0px 5px;
+  color: black;
+  font-size: 12px;
+}
+
+.green {
+  background: #ccffcc;
+  border: 1px solid red;
+  padding: 5px 10px;
+  margin: 0px 5px;
+  color: black;
+  font-size: 12px;
+}
+    </style>
+</head>
+    <body>
+    
+        <div class="container">
+  <div class="main">
+    <p>CREATE A LOGIN FORM</p>
+    <form id="form_id" method="post" name="myform">
+      <label>User Name :</label>
+      <input type="text" name="username" id="username" />
+      <label>Password :</label>
+      <input type="password" name="password" id="password" />
+      <span class="pass_strength"></span>
+      <input type="button" value="Login" id="submit" onclick="validate()" />
+      <button class="reset" type="reset" value="Reset">Reset</button>
+    </form>
+
+  </div>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+        /* START LOGIN FORM HERE */
+
+
+var attempt = 3; // Variable to count number of attempts.
+// Below function Executes on click of login button.
+function validate(){
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+if ( username == "admin" && password == "admin"){
+alert ("Login successfully");
+window.location = "https://google.com"; // Redirecting to other page.
+return false;
+}
+else{
+attempt --;// Decrementing by one.
+alert("You have left "+attempt+" attempt;");
+// Disabling fields after 3 attempts.
+if( attempt == 0){
+document.getElementById("username").disabled = true;
+document.getElementById("password").disabled = true;
+document.getElementById("submit").disabled = true;
+return false;
+}
+}
+}
+
+/* eND LOGIN FORM */
+/*  */
+
+
+/* sTART PASSWORD STRENGTH CHECK */
+
+
+
+$(document).ready(function(){
+$("#password").keyup(function(){
+var count=$(this).val().length;
+// $(".pass_strength").text(count);
+if(count<1){
+$(".pass_strength").text("");
+$(".pass_strength").removeClass("red");
+$(".pass_strength").removeClass("orange");
+$(".pass_strength").removeClass("green");
+}
+else if(count<6){
+$(".pass_strength").text("Weak");
+$(".pass_strength").addClass("red");
+$(".pass_strength").removeClass("orange");
+$(".pass_strength").removeClass("green");
+}
+else if(count<=10){
+$(".pass_strength").text("Good");
+$(".pass_strength").addClass("orange");
+$(".pass_strength").removeClass("red");
+$(".pass_strength").removeClass("green");
+}
+else{
+$(".pass_strength").text("Strong");
+$(".pass_strength").addClass("green");
+$(".pass_strength").removeClass("red");
+$(".pass_strength").removeClass("orange");
+}
+});
+});
+
+        </script>
+    </body>
+</html>
